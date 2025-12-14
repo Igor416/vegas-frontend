@@ -1,8 +1,8 @@
 import { Stack, Typography, Box, Fade, Slide, Zoom } from '@mui/material';
-import { useWindow } from '../../util/hooks';
-import { BackgroundImage } from './image';
+import { useWindow } from '../../../util/hooks';
+import { BackgroundImage } from '../image';
 
-export function Banner1() {
+export function Banner2() {
   const isMobile = useWindow()
   
   return <BackgroundImage brightness={70} sx={{width: '100%', height: isMobile ? '80vh' : '100vh'}} srcList={`/static/images/bg.jpg`}>
