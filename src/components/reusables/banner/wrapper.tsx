@@ -7,7 +7,7 @@ import { useWindow } from '../../../util/hooks';
 
 // Configuration constants
 const FLAG = true; // Set to false to always show video
-const BANNER_SHOWTIME1 = 600_000; // 60 seconds in milliseconds
+const BANNER_SHOWTIME1 = 60_000; // 60 seconds in milliseconds
 const BANNER_SHOWTIME2 = 60_000; // 60 seconds in milliseconds
 const VIDEO_SHOWTIME = 20_000; // 20 seconds in milliseconds
 
