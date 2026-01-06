@@ -1,12 +1,11 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Fab, Stack } from '@mui/material';
-import { ShoppingCart } from '@mui/icons-material';
 
 import { useWindow } from './util/hooks';
 
 import { Providers } from './providers';
 import { MobileHeader, DesktopHeader, Footer } from './components';
-import { BannerWrapper, SectionImage } from './components/reusables';
+import { BannerWrapper, Image, SectionImage } from './components/reusables';
 
 export function App() {
   const isMobile = useWindow()
@@ -26,7 +25,7 @@ export function App() {
         <Outlet />
       </Stack>
       <Footer />
-      {!isMobile && <Link to='/cart'>
+      {!isMobile && <Link to='/sales'>
         <Fab sx={{
           zIndex: 1300,
           bgcolor: 'tertiary.main',
@@ -38,7 +37,11 @@ export function App() {
           alignItems: 'center',
           justifyContent: 'center'
         }} aria-label="shopping-cart">
-          <ShoppingCart />
+          <Image 
+            srcList='/static/images/sale.png'
+            alt='shopping-cart'
+            sx={{ width: '100%', height: '100%' }}
+          />
         </Fab>
       </Link>}
     </Stack>
