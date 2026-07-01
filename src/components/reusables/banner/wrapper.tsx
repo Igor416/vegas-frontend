@@ -1,9 +1,9 @@
-import { Stack, Fade, Box } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { Banner1 } from './1';
-import { Banner2 } from './2';
-import { SectionVideo } from '../sectionVideo';
-import { useWindow } from '../../../util/hooks';
+import { Stack, Fade, Box } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Banner1 } from "./1";
+import { Banner2 } from "./2";
+import { SectionVideo } from "../sectionVideo";
+import { useWindow } from "../../../util/hooks";
 
 // Configuration constants
 const FLAG = true; // Set to false to always show video
@@ -23,18 +23,26 @@ export function BannerWrapper() {
     }
 
     // Alternate between Banner and Video based on timing
-    
-    let interval
+    ///*
+    let interval;
     if (isMobile) {
       interval = setInterval(() => {
-        setBannerIndex((prev) => prev === 0 ? 1 : 0);
+        setBannerIndex((prev) => (prev === 0 ? 1 : 0));
       }, BANNER_SHOWTIME1);
     } else {
-      interval = setInterval(() => {
-        setBannerIndex((prev) => prev === 0 ? 1 : prev === 1 ? -1 : 0);
-      }, bannerIndex === 0 ? BANNER_SHOWTIME1 : bannerIndex === 1 ? BANNER_SHOWTIME2 : VIDEO_SHOWTIME);
+      interval = setInterval(
+        () => {
+          setBannerIndex((prev) => (prev === 0 ? 1 : prev === 1 ? -1 : 0));
+        },
+        bannerIndex === 0
+          ? BANNER_SHOWTIME1
+          : bannerIndex === 1
+            ? BANNER_SHOWTIME2
+            : VIDEO_SHOWTIME,
+      );
     }
     return () => clearInterval(interval);
+    //*/
     /*
     if (!isMobile) {
       const interval = setInterval(() => {
@@ -45,21 +53,25 @@ export function BannerWrapper() {
     */
   }, [bannerIndex, isMobile]);
 
-  return <Stack sx={{ position: 'relative' }}>
-    <Fade in={bannerIndex === 0} timeout={1000} unmountOnExit>
-      <Box>
-        <Banner1 />
-      </Box>
-    </Fade>
-    <Fade in={bannerIndex === 1} timeout={1000} unmountOnExit>
-      <Box>
-        <Banner2 />
-      </Box>
-    </Fade>
-    <Fade in={bannerIndex === -1} timeout={1000} unmountOnExit>
-      <Box>
-        <SectionVideo />
-      </Box>
-    </Fade>
-  </Stack>
+  return (
+    <Stack sx={{ position: "relative" }}>
+      {
+        <Fade in={bannerIndex === 0} timeout={1000} unmountOnExit>
+          <Box>
+            <Banner1 />
+          </Box>
+        </Fade>
+      }
+      <Fade in={bannerIndex === 1} timeout={1000} unmountOnExit>
+        <Box>
+          <Banner2 />
+        </Box>
+      </Fade>
+      <Fade in={bannerIndex === -1} timeout={1000} unmountOnExit>
+        <Box>
+          <SectionVideo />
+        </Box>
+      </Fade>
+    </Stack>
+  );
 }
